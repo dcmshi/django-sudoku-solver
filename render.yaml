@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: django-sudoku-solver
+    runtime: python
+    buildCommand: "pip install uv && uv sync && uv run python manage.py collectstatic --noinput"
+    startCommand: "uv run gunicorn sudoku_solver.wsgi --log-file -"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.12.12
