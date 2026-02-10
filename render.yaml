@@ -1,7 +1,7 @@
 services:
   - type: web
     name: django-sudoku-solver
-    runtime: python
+    env: python
     buildCommand: "pip install uv && uv sync && uv run python manage.py collectstatic --noinput"
     startCommand: "uv run gunicorn sudoku_solver.wsgi --log-file -"
     envVars:
