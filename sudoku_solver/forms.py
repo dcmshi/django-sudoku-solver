@@ -3,7 +3,7 @@
 
 from django import forms
 from django.forms import formset_factory
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 NUMBERS_NB = 9*9
 

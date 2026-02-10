@@ -1,6 +1,0 @@
-Django==4.0.3
-Jinja2==2.8
-jinja2-django-tags==0.3
-MarkupSafe==0.23
-whitenoise==3.2.2
-gunicorn==19.6.0

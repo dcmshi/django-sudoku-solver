@@ -3,38 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% trans "Sudoku Solver" %}</title>
-  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
-  <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <title>{{ _("Sudoku Solver") }}</title>
+  <link href="{{ static('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ static('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+  <link href="{{ static('css/animate.css') }}" rel="stylesheet">
+  <link href="{{ static('css/style.css') }}" rel="stylesheet">
 </head>
 <body class="gray-bg">
   <div class="loginColumns animated fadeInDown">
     <div class="row">
       <div class="col-md-6">
-        <h2 class="font-bold">{% trans "Sudoku Solver" %}</h2>
+        <h2 class="font-bold">{{ _("Sudoku Solver") }}</h2>
         <p>
-          {% trans "Stuck with your Sudoku puzzle? Use my solver to solve any puzzle!" %}
+          {{ _("Stuck with your Sudoku puzzle? Use my solver to solve any puzzle!") }}
         </p>
         <p class="text-navy">
           <i class="fa fa-info-circle" aria-hidden="true"></i>
-          {% trans "Tip: you can use arrows to navigate." %}
+          {{ _("Tip: you can use arrows to navigate.") }}
         </p>
-        <p>{% trans "How does it work?" %}</p>
+        <p>{{ _("How does it work?") }}</p>
         <p>
-          {% trans "I wrote a small program in Python, and made an online version available using the Django framework." %}
+          {{ _("I wrote a small program in Python, and made an online version available using the Django framework.") }}
         </p>
         <p>
-          {% trans "Want to know how it's made? It's open source!" %}
+          {{ _("Want to know how it's made? It's open source!") }}
         </p>
         <ul>
-          <li><a href="https://github.com/dcmshi/django-sudoku-solver"><i class="fa fa-github"></i> {% trans "Django project on Github" %}</a></li>
-          <li><a href="https://github.com/dcmshi/sudoku-solver"><i class="fa fa-github"></i> {% trans "Python solver on Github" %}</a></li>
+          <li><a href="https://github.com/dcmshi/django-sudoku-solver"><i class="fa fa-github"></i> {{ _("Django project on Github") }}</a></li>
+          <li><a href="https://github.com/dcmshi/sudoku-solver"><i class="fa fa-github"></i> {{ _("Python solver on Github") }}</a></li>
         </ul>
         <p>
-          {% trans "You just want to quickly test my service without entering an actual puzzle?" %}
-          <a href="{% url 'home' %}?suggest=1">{% trans "Generate a puzzle automatically!" %}</a>
+          {{ _("You just want to quickly test my service without entering an actual puzzle?") }}
+          <a href="{{ url('home') }}?suggest=1">{{ _("Generate a puzzle automatically!") }}</a>
         </p>
       </div>
       <div class="col-md-6">
@@ -42,16 +42,16 @@
           {% if solved %}
             <p class="text-success">
               <i class="fa fa-check-circle" aria-hidden="true"></i>
-              {% trans "I solved this puzzle for you. Here is the solution:" %}
+              {{ _("I solved this puzzle for you. Here is the solution:") }}
             </p>
           {% elif action == "solve" %}
             <p class="text-danger">
               <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-              {% trans "Your puzzle seems to be invalid or incomplete!" %}
+              {{ _("Your puzzle seems to be invalid or incomplete!") }}
             </p>
           {% endif %}
-            <form class="m-t" role="form" method="post" action="{% url 'home' %}">
-            {% csrf_token %}
+            <form class="m-t" role="form" method="post" action="{{ url('home') }}">
+            {{ csrf_input }}
             {{ form.management_form }}
               <table class="table-sudoku">
                 <tbody>
@@ -67,9 +67,9 @@
               <br/>
               <p>
               {% if solved %}
-                <a class="btn btn-danger block full-width m-b" href="{% url 'home' %}">{% trans "Try a new puzzle" %}</a>
+                <a class="btn btn-danger block full-width m-b" href="{{ url('home') }}">{{ _("Try a new puzzle") }}</a>
               {% else %}
-                <button type="submit" name="action" value="solve" class="btn btn-primary block full-width m-b">{% trans "Solve" %}</button>
+                <button type="submit" name="action" value="solve" class="btn btn-primary block full-width m-b">{{ _("Solve") }}</button>
               {% endif %}
               </p>
             </form>
@@ -79,12 +79,12 @@
     <hr/>
     <div class="row">
       <div class="col-md-12">
-        <a href="https://dcmshi.herokuapp.com/">Copyright © David Shi (dcmshi), 2016</a>
+        <a href="https://dcmshi.herokuapp.com/">Copyright &copy; David Shi (dcmshi), 2016</a>
       </div>
     </div>
   </div>
-  <script src="{% static 'js/jquery-2.1.1.js' %}"></script>
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{{ static('js/jquery-2.1.1.js') }}"></script>
+  <script src="{{ static('js/bootstrap.min.js') }}"></script>
   <script>
   $(function() {
     $('input[type=number]').on('keydown', function(e) {
@@ -96,25 +96,25 @@
       if (k == 27) {
         $(this).blur();
       }
-      // arrow ‘up’
+      // arrow 'up'
       else if (k == 38) {
         if (p > 8) {
           $('input[type=number][name=form-' + (p - 9) + '-value]').focus();
         }
       }
-      // arrow ‘down’
+      // arrow 'down'
       else if (k == 40) {
         if (p < 72) {
           $('input[type=number][name=form-' + (p + 9) + '-value]').focus();
         }
       }
-      // arrow ‘right’
+      // arrow 'right'
       else if (k == 39) {
         if (p % 9 < 8) {
           $('input[type=number][name=form-' + (p + 1) + '-value]').focus();
         }
       }
-      // arrow ‘left’
+      // arrow 'left'
       else if (k == 37) {
         if (p % 9 > 0) {
           $('input[type=number][name=form-' + (p - 1) + '-value]').focus();

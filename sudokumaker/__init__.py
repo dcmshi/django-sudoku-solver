@@ -152,24 +152,24 @@ def print_sub (sub):
             #print '+-----+'
             for j in range (Nx):
                 if j%Nx == 0:
-                    print '+-',
+                    print('+-', end=' ')
                 else:
-                    print '--',
-            print '+'
+                    print('--', end=' ')
+            print('+')
 
         for j in range (Nx):
             if j%Nx == 0:
-                print '|%c'%(conv_ent(sub[idx_sub(i,j)])),
+                print('|%c'%(conv_ent(sub[idx_sub(i,j)])), end=' ')
             else:
-                print ' %c'%(conv_ent(sub[idx_sub(i,j)])),
-        print '|'
-    #print '+-----+\n'
+                print(' %c'%(conv_ent(sub[idx_sub(i,j)])), end=' ')
+        print('|')
+    #print('+-----+\n')
     for j in range (Nx):
         if j%Nx == 0:
-            print '+-',
+            print('+-', end=' ')
         else:
-            print '--',
-    print '+'
+            print('--', end=' ')
+    print('+')
 
 
 ################
@@ -202,23 +202,23 @@ def print_full (full):
         if i%Ny == 0:
             for j in range (Nx*Ny):
                 if j%Nx == 0:
-                    print '+-',
+                    print('+-', end=' ')
                 else:
-                    print '--',
-            print '+'
+                    print('--', end=' ')
+            print('+')
         for j in range (Nx*Ny):
             if j%Nx == 0:
-                print '|%c'%(conv_ent(full[idx_full(i,j)])),
+                print('|%c'%(conv_ent(full[idx_full(i,j)])), end=' ')
             else:
-                print ' %c'%(conv_ent(full[idx_full(i,j)])),
-        print '|'
+                print(' %c'%(conv_ent(full[idx_full(i,j)])), end=' ')
+        print('|')
 
     for j in range (Nx*Ny):
         if j%Nx == 0:
-            print '+-',
+            print('+-', end=' ')
         else:
-            print '--',
-    print '+'
+            print('--', end=' ')
+    print('+')
 
 
 def set_sub_in_full (full,i,j,sub):
@@ -484,7 +484,7 @@ def check_by_mask (x):
                     continue
 
                 if s[idx_sub(li[0],lj[0])] != 0:
-                    print 'something is wrong...'
+                    print('something is wrong...')
                     sys.exit()
                 flag = 1
                 xx[idx_full(isub*Ny+li[0],jsub*Nx+lj[0])] = z
@@ -551,4 +551,4 @@ def make_problem():
         # try to remove entry further!
 
     # return the final "solvable" board
-    return [x0[x*9:x*9+9] for x in xrange(9)]
+    return [x0[x*9:x*9+9] for x in range(9)]

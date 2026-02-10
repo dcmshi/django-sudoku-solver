@@ -1,4 +1,6 @@
 venv
+.venv
 *.pyc
 staticfiles
 .env
+CLAUDE.md

@@ -7,7 +7,7 @@ import sudokumaker
 
 from django.contrib import messages
 from django.shortcuts import render
-from sudoku import SudokuProblem
+from .sudoku import SudokuProblem
 from . import forms
 
 # Create your views here.
@@ -28,7 +28,7 @@ def home(request):
 
     if action == 'solve' and form.is_valid():
         user_data = [v['value'] or 0 for v in form.cleaned_data]
-        matrix = [user_data[i:i+9] for i in xrange(0, len(user_data), 9)]
+        matrix = [user_data[i:i+9] for i in range(0, len(user_data), 9)]
         problem = SudokuProblem(matrix)
         solution = problem.solve()
         if solution:
