@@ -65,12 +65,17 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Trust the X-Forwarded-Proto header from Render/Heroku SSL load balancers
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow form submissions from HTTPS origins on supported hosting platforms
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.onrender.com',
+    'https://*.herokuapp.com',
+]
+
 # Static files (CSS, JavaScript, Images)
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
