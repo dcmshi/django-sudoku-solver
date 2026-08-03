@@ -2,6 +2,8 @@
 
 A Django web app that solves Sudoku puzzles. Enter a puzzle, click Solve, and get the answer instantly. Can also generate random puzzles automatically.
 
+**▶ Try it live: <https://django-sudoku-solver-hio2.onrender.com/>**
+
 ## How it works
 
 The solver is written in Python and uses a backtracking algorithm with constraint satisfaction heuristics (Most Constrained Variable, Least Constraining Values). The puzzle generator creates valid boards and removes clues while ensuring a unique solution remains.
