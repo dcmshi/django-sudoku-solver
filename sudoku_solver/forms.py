@@ -20,6 +20,12 @@ class SudokuValidatingFormSet(forms.BaseFormSet):
         if any(self.errors):
             return
 
+        # The view slices the cleaned data into a 9x9 board, so every cell must
+        # come back. validate_min can't check this: it skips blank cells, so it
+        # rejected any puzzle that still had empty squares.
+        if self.total_form_count() != NUMBERS_NB:
+            raise forms.ValidationError(_(u"Not enough values for solving this sudoku"))
+
         if sum([bool(v['value']) for v in self.cleaned_data]) < 17:
             raise forms.ValidationError(_(u"Not enough values for solving this sudoku"))
 
@@ -27,6 +33,6 @@ SudokuForm = formset_factory(
     NumberForm,
     extra=NUMBERS_NB,
     min_num=NUMBERS_NB, max_num=NUMBERS_NB,
-    validate_min=True, validate_max=True,
+    validate_max=True,
     formset=SudokuValidatingFormSet
 )

@@ -25,6 +25,9 @@ def home(request):
         matrix = sudokumaker.make_problem()
         initial_data = [{'value': v or None} for k, v in enumerate(itertools.chain.from_iterable(matrix))]
     form = forms.SudokuForm(request.POST or None, initial=initial_data)
+    if form.is_bound and form.total_form_count() != forms.NUMBERS_NB:
+        # A tampered TOTAL_FORMS would leave the template indexing past the end.
+        form = forms.SudokuForm()
 
     if action == 'solve' and form.is_valid():
         user_data = [v['value'] or 0 for v in form.cleaned_data]
